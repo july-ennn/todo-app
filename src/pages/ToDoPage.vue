@@ -12,9 +12,10 @@
     <q-btn label="Add" color="primary" class="q-mt-sm" @click="addTask" />
     <q-btn label="Clear Completed" color="negative" class="q-mt-sm" @click="clearCompleted" />
 
-    <!-- Filter Segment -->
-    <q-segment
+    <!-- Filter Toggle -->
+    <q-btn-toggle
       v-model="filter"
+      toggle-color="primary"
       dense
       class="q-my-md"
       :options="[
