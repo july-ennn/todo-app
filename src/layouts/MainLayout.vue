@@ -21,6 +21,11 @@
           <q-item-section avatar><q-icon name="checklist" /></q-item-section>
           <q-item-section>To-Do</q-item-section>
         </q-item>
+
+        <q-item clickable v-ripple to="/dashboard">
+          <q-item-section avatar><q-icon name="checklist" /></q-item-section>
+          <q-item-section>Dashboard</q-item-section>
+        </q-item>        
       </q-list>
     </q-drawer>
 
