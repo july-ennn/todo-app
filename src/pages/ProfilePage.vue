@@ -1,35 +1,34 @@
 <template>
-  <div class="q-pa-md q-gutter-md">
+  <div class="q-pa-md q-gutter-sm">
 
-    <!-- Title and Subtitle -->
+    <!-- Title -->
     <q-card flat class="q-pa-md bg-primary text-white shadow-2">
       <q-card-section>
-        <div class="text-h5">My Profile</div>
+        <div class="text-h6">My Profile</div>
         <div class="text-subtitle2">Update your personal information and preferences</div>
       </q-card-section>
     </q-card>
 
-    <!-- Profile Form -->
+    <!-- Profile Card -->
     <q-card
-      class="q-mt-md shadow-2 q-pa-lg"
-      style="max-width: 600px; margin: auto; border-radius: 12px;"
+      class="q-mt-md shadow-2 q-pa-md"
+      style="max-width: 500px; margin: auto; border-radius: 10px;"
       bordered
     >
       <q-card-section>
 
-        <!-- Avatar Upload with hover overlay -->
-        <div class="row justify-center q-mb-lg">
+        <!-- Avatar Upload -->
+        <div class="row justify-center q-mb-md">
           <div
-            class="relative q-mb-md"
-            style="width: 130px; height: 130px; cursor: pointer; border-radius: 50%; overflow: hidden;"
+            class="relative"
+            style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; cursor: pointer;"
             @click="triggerFileInput"
             @mouseenter="avatarHover = true"
             @mouseleave="avatarHover = false"
           >
-            <q-avatar size="130px" class="q-pa-xs">
-              <transition name="fade">
-                <img v-if="profile.avatarUrl" :src="profile.avatarUrl" alt="User Avatar" key="profile.avatarUrl" style="object-fit: cover; width: 130px; height: 130px;" />
-              </transition>
+            <q-avatar size="100px" class="q-pa-xs">
+              <img v-if="profile.avatarUrl" :src="profile.avatarUrl" alt="User Avatar"
+                   style="object-fit: cover; width: 100%; height: 100%;" />
             </q-avatar>
 
             <transition name="fade">
@@ -38,7 +37,7 @@
                 class="absolute-full bg-black-6 flex flex-center text-white"
                 style="border-radius: 50%; backdrop-filter: brightness(0.6);"
               >
-                <q-icon name="camera_alt" size="36px" />
+                <q-icon name="camera_alt" size="28px" />
               </div>
             </transition>
           </div>
@@ -51,133 +50,63 @@
           />
         </div>
 
-        <q-form @submit.prevent="saveProfile" ref="formRef" class="q-gutter-md">
+        <!-- Profile Form -->
+        <q-form @submit.prevent="saveProfile" ref="formRef" class="q-gutter-sm">
 
-          <q-input
-            filled
-            v-model="profile.name"
-            label="Full Name"
-            :rules="[val => !!val || 'Name is required']"
-            lazy-rules
-          />
+          <q-input dense filled v-model="profile.name" label="Full Name"
+                   :rules="[val => !!val || 'Name is required']" lazy-rules />
 
-          <q-input
-            filled
-            v-model="profile.email"
-            label="Email Address"
-            type="email"
-            :rules="[
-              val => !!val || 'Email is required',
-              val => /^\S+@\S+\.\S+$/.test(val) || 'Email must be valid'
-            ]"
-            lazy-rules
-          />
+          <q-input dense filled v-model="profile.email" label="Email Address" type="email"
+                   :rules="[
+                     val => !!val || 'Email is required',
+                     val => /^\S+@\S+\.\S+$/.test(val) || 'Email must be valid'
+                   ]" lazy-rules />
 
-          <q-input
-            filled
-            v-model="profile.phone"
-            label="Phone Number"
-            mask="+## ### ### ####"
-            hint="+XX XXX XXX XXXX"
-            lazy-rules
-          />
+          <q-input dense filled v-model="profile.phone" label="Phone Number"
+                   mask="+## ### ### ####" hint="+XX XXX XXX XXXX" lazy-rules />
 
-          <q-input
-            filled
-            v-model="profile.dob"
-            label="Date of Birth"
-            mask="####-##-##"
-            placeholder="YYYY-MM-DD"
-            hint="Format: YYYY-MM-DD"
-          />
+          <q-input dense filled v-model="profile.dob" label="Date of Birth"
+                   mask="####-##-##" placeholder="YYYY-MM-DD" hint="Format: YYYY-MM-DD" />
 
-          <q-input
-            filled
-            v-model="profile.bio"
-            type="textarea"
-            label="Bio / About Me"
-            autogrow
-            maxlength="300"
-            counter
-            class="q-mt-md"
-          />
+          <q-input dense filled v-model="profile.bio" type="textarea" label="Bio / About Me"
+                   autogrow maxlength="300" counter />
 
-          <div class="row q-gutter-sm q-mt-md">
-            <q-input
-              filled
-              v-model="profile.social.facebook"
-              label="Facebook URL"
-              placeholder="https://facebook.com/username"
-              :rules="[urlRule]"
-              class="col"
-              dense
-            >
+          <div class="row q-col-gutter-sm q-mt-sm">
+            <q-input dense filled v-model="profile.social.facebook"
+                     label="Facebook URL" placeholder="https://facebook.com/username"
+                     :rules="[urlRule]" class="col">
               <template #append>
                 <q-icon name="facebook" size="18px" class="text-blue" />
               </template>
             </q-input>
-            <q-input
-              filled
-              v-model="profile.social.twitter"
-              label="Twitter URL"
-              placeholder="https://twitter.com/username"
-              :rules="[urlRule]"
-              class="col"
-              dense
-            >
+
+            <q-input dense filled v-model="profile.social.twitter"
+                     label="Twitter URL" placeholder="https://twitter.com/username"
+                     :rules="[urlRule]" class="col">
               <template #append>
                 <q-icon name="twitter" size="18px" class="text-blue" />
               </template>
             </q-input>
           </div>
 
-          <q-input
-            filled
-            v-model="profile.password"
-            label="Password"
-            :type="showPassword ? 'text' : 'password'"
-            :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-            @click:append="showPassword = !showPassword"
-            hint="Leave blank if you don't want to change password"
-            class="q-mt-md"
-          />
+          <q-input dense filled v-model="profile.password" label="Password"
+                   :type="showPassword ? 'text' : 'password'"
+                   :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                   @click:append="showPassword = !showPassword"
+                   hint="Leave blank if you don't want to change password" />
 
-          <q-input
-            filled
-            v-model="profile.confirmPassword"
-            label="Confirm Password"
-            :type="showConfirmPassword ? 'text' : 'password'"
-            :append-icon="showConfirmPassword ? 'visibility_off' : 'visibility'"
-            @click:append="showConfirmPassword = !showConfirmPassword"
-            hint="Must match the new password"
-            :rules="[val => val === profile.password || 'Passwords do not match']"
-            lazy-rules
-          />
+          <q-input dense filled v-model="profile.confirmPassword" label="Confirm Password"
+                   :type="showConfirmPassword ? 'text' : 'password'"
+                   :append-icon="showConfirmPassword ? 'visibility_off' : 'visibility'"
+                   @click:append="showConfirmPassword = !showConfirmPassword"
+                   hint="Must match the new password"
+                   :rules="[val => val === profile.password || 'Passwords do not match']"
+                   lazy-rules />
 
-          <q-select
-            filled
-            v-model="profile.theme"
-            label="Theme Preference"
-            :options="['Light', 'Dark', 'System']"
-            class="q-mt-md"
-          />
-
-          <div class="row justify-between q-mt-lg">
-            <q-btn
-              label="Reset"
-              color="grey-6"
-              flat
-              @click="resetProfile"
-              :disable="loading"
-            />
-            <q-btn
-              label="Save Changes"
-              type="submit"
-              color="primary"
-              :loading="loading"
-              :disable="loading"
-              spinner-color="white"
-            />
+          <div class="row justify-between q-mt-md">
+            <q-btn label="Reset" color="grey-6" flat @click="resetProfile" :disable="loading" />
+            <q-btn label="Save Changes" type="submit" color="primary"
+                   :loading="loading" :disable="loading" spinner-color="white" />
           </div>
 
         </q-form>
@@ -256,12 +185,10 @@ async function saveProfile() {
       return
     }
 
-    // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1200))
 
     $q.notify({ type: 'positive', message: 'Profile updated successfully' })
 
-    // Clear passwords after save
     profile.value.password = ''
     profile.value.confirmPassword = ''
   } finally {
