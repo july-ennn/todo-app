@@ -11,7 +11,12 @@ const routes = [
       { path: '/projects/work', component: () => import('pages/WorkProjectsPage.vue') },
       { path: '/projects/personal', component: () => import('pages/PersonalProjectsPage.vue') },
       { path: '/settings/profile', component: () => import('pages/ProfilePage.vue') },
-      { path: '/settings/preferences', component: () => import('pages/PreferencesPage.vue') }
+      { path: '/settings/preferences', component: () => import('pages/PreferencesPage.vue') },
+      { path: '/tags/work', component: () => import('pages/WorkTagsPage.vue') },
+      { path: '/tags/urgent', component: () => import('pages/UrgentTagsPage.vue') },
+      { path: '/tags/ideas', component: () => import('pages/IdeasTagsPage.vue') },
+      { path: '/calendar', component: () => import('pages/CalendarPage.vue') },
+      { path: '/pinned', component: () => import('pages/PinnedTasksPage.vue') }
     ]
   },
 
