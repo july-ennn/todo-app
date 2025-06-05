@@ -133,7 +133,6 @@ const notificationOptions = [
 
 const languages = ['English', 'Filipino', 'Spanish']
 
-// A basic list of common timezones (can be expanded)
 const timezones = [
   'UTC',
   'America/New_York',
@@ -147,7 +146,6 @@ const timezones = [
   'Australia/Sydney'
 ].map(tz => ({ label: tz, value: tz }))
 
-// Load saved preferences from localStorage on mount
 onMounted(() => {
   const saved = localStorage.getItem('userPreferences')
   if (saved) {
@@ -155,7 +153,9 @@ onMounted(() => {
       Object.assign(preferences.value, JSON.parse(saved))
       $q.dark.set(preferences.value.darkMode)
       applyFontSize()
-    } catch { /* ignore errors */ }
+    } catch {
+      // ignore errors
+    }
   } else {
     $q.dark.set(preferences.value.darkMode)
     applyFontSize()
@@ -170,10 +170,10 @@ watch(() => preferences.value.darkMode, (newVal) => {
   $q.dark.set(newVal)
 }, { immediate: true })
 
-// Apply font size to body
 function applyFontSize() {
   document.documentElement.style.setProperty('--app-font-size', preferences.value.fontSize + 'px')
 }
+
 watch(() => preferences.value.fontSize, applyFontSize)
 
 function savePreferences() {
