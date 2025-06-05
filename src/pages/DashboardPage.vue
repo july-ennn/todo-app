@@ -85,7 +85,7 @@
             label="New Task"
             color="primary"
             unelevated
-            @click="goTo('today')"
+            @click="goTo('tasks/today')"
             v-tooltip="'Add a new task for today'"
           />
           <q-btn
@@ -94,7 +94,7 @@
             label="Upcoming"
             color="orange"
             unelevated
-            @click="goTo('upcoming')"
+            @click="goTo('tasks/upcoming')"
             v-tooltip="'View your upcoming tasks and deadlines'"
           />
           <q-btn
@@ -103,7 +103,7 @@
             label="Completed"
             color="green"
             unelevated
-            @click="goTo('completed')"
+            @click="goTo('projects/work')"
             v-tooltip="'See your completed tasks history'"
           />
         </div>
