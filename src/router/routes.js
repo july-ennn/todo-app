@@ -16,7 +16,16 @@ const routes = [
       { path: '/tags/urgent', component: () => import('pages/UrgentTagsPage.vue') },
       { path: '/tags/ideas', component: () => import('pages/IdeasTagsPage.vue') },
       { path: '/calendar', component: () => import('pages/CalendarPage.vue') },
-      { path: '/pinned', component: () => import('pages/PinnedTasksPage.vue') }
+      { path: '/pinned', component: () => import('pages/PinnedTasksPage.vue') },
+      { path: '/reminders', component: () => import('pages/RemindersPage.vue') },
+      { path: '/focus', component: () => import('pages/FocusModePage.vue') },
+      { path: '/notes', component: () => import('pages/NotesPage.vue') },
+      { path: '/shared', component: () => import('pages/SharedTasksPage.vue') },
+      { path: '/templates', component: () => import('pages/TemplatesPage.vue') },
+      { path: '/reports', component: () => import('pages/ReportsPage.vue') },
+      { path: '/notifications', component: () => import('pages/NotificationsPage.vue') },
+      { path: '/trash', component: () => import('pages/TrashPage.vue') },
+      { path: '/help', component: () => import('pages/HelpPage.vue') }
     ]
   },
 
