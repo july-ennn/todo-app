@@ -4,7 +4,7 @@
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn flat dense round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu" />
-        <q-toolbar-title class="text-weight-bold">My Quasar App</q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold">TaskFlow</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -93,6 +93,54 @@
           <q-item clickable v-ripple to="/calendar" active-class="text-primary bg-grey-2">
             <q-item-section avatar><q-icon name="event" /></q-item-section>
             <q-item-section>Calendar</q-item-section>
+          </q-item>
+
+          <!-- Productivity Tools -->
+          <q-item-label header>Productivity Tools</q-item-label>
+
+          <q-item clickable v-ripple to="/reminders" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="alarm" /></q-item-section>
+            <q-item-section>Reminders</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/focus" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="hourglass_top" /></q-item-section>
+            <q-item-section>Focus Mode</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/notes" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="sticky_note_2" /></q-item-section>
+            <q-item-section>Notes</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/shared" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="people" /></q-item-section>
+            <q-item-section>Shared Tasks</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/templates" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="layers" /></q-item-section>
+            <q-item-section>Templates</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/reports" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="bar_chart" /></q-item-section>
+            <q-item-section>Reports</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/notifications" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="notifications" /></q-item-section>
+            <q-item-section>Notifications</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/trash" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="delete" /></q-item-section>
+            <q-item-section>Trash</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple to="/help" active-class="text-primary bg-grey-2">
+            <q-item-section avatar><q-icon name="help_outline" /></q-item-section>
+            <q-item-section>Help</q-item-section>
           </q-item>
 
           <!-- Settings -->
