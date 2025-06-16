@@ -163,23 +163,23 @@ function formatDate(iso) {
   return date.formatDate(iso, 'MMM D, YYYY hh:mm A')
 }
 
-function refreshStats() {
+async function refreshStats() {
   loading.value = true
-  setTimeout(() => {
-    // Simulate fetching new data (replace with actual API call)
-    stats.value.todayTasks = Math.floor(Math.random() * 10)
-    stats.value.completedTasks = Math.floor(Math.random() * 20)
-    stats.value.activeProjects = Math.floor(Math.random() * 5)
+  try {
+    const res = await fetch('http://localhost:8000/api/dashboard-stats')
+    const data = await res.json()
+    stats.value = data
 
-    // Add a new activity for demo
     activityLog.value.unshift({
-      text: 'Refreshed dashboard data',
-      icon: 'refresh',
-      color: 'orange',
+      text: 'Fetched dashboard stats from backend',
+      icon: 'cloud_download',
+      color: 'blue',
       date: new Date().toISOString()
     })
-
+  } catch (err) {
+    console.error('Failed to fetch stats:', err)
+  } finally {
     loading.value = false
-  }, 1500)
+  }
 }
 </script>
